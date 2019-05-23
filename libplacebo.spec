@@ -6,7 +6,7 @@ Summary:	Reusable library for GPU-accelerated video/image rendering
 Summary(pl.UTF-8):	Biblioteka do renderowania filmów/obrazu ze wsparciem GPU
 Name:		libplacebo
 Version:	1.7.0
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		Libraries
 #Source0Download: https://code.videolan.org/videolan/libplacebo/tags
@@ -23,7 +23,7 @@ BuildRequires:	meson >= 0.47
 BuildRequires:	ninja
 BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	shaderc-devel
-BuildRequires:	vulkan-devel >= 1.0.42
+BuildRequires:	Vulkan-Loader-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -39,7 +39,7 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	lcms2-devel >= 2.6
 Requires:	shaderc-devel
-Requires:	vulkan-devel >= 1.0.42
+Requires:	Vulkan-Loader-devel
 
 %description devel
 Header files for libplacebo library.
