@@ -19,8 +19,8 @@ BuildRequires:	glslang-devel
 # >= 2763
 BuildRequires:	lcms2-devel >= 2.6
 BuildRequires:	libstdc++-devel >= 6:4.7
-BuildRequires:	meson >= 0.47
-BuildRequires:	ninja
+BuildRequires:	meson >= 0.49
+BuildRequires:	ninja >= 1.5
 BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	shaderc-devel
 BuildRequires:	Vulkan-Loader-devel >= 1.0.42
