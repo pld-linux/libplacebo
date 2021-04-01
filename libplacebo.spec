@@ -5,13 +5,13 @@
 Summary:	Reusable library for GPU-accelerated video/image rendering
 Summary(pl.UTF-8):	Biblioteka do renderowania filmów/obrazu ze wsparciem GPU
 Name:		libplacebo
-Version:	3.104.0
+Version:	3.120.0
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 #Source0Download: https://code.videolan.org/videolan/libplacebo/tags
 Source0:	https://code.videolan.org/videolan/libplacebo/-/archive/v%{version}/%{name}-v%{version}.tar.bz2
-# Source0-md5:	97c9c9bc13e77c070b4dc9edf7dcf1b1
+# Source0-md5:	bd3e78f84f324bcab9ff41360e94d8d5
 Patch0:		%{name}-shaderc.patch
 URL:		https://code.videolan.org/videolan/libplacebo
 BuildRequires:	gcc >= 5:3.2
@@ -69,7 +69,8 @@ Statyczna biblioteka libplacebo.
 
 %build
 %meson build \
-	%{!?with_static_libs:--default-library=shared}
+	%{!?with_static_libs:--default-library=shared} \
+	-Ddemos=false
 
 %ninja_build -C build
 
@@ -87,7 +88,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc COPYING README.md
-%attr(755,root,root) %{_libdir}/libplacebo.so.104
+%attr(755,root,root) %{_libdir}/libplacebo.so.120
 
 %files devel
 %defattr(644,root,root,755)
