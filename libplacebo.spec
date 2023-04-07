@@ -1,30 +1,36 @@
 #
 # Conditional build:
+%bcond_without	libdovi		# libdovi support
 %bcond_without	static_libs	# static library
 #
 Summary:	Reusable library for GPU-accelerated video/image rendering
 Summary(pl.UTF-8):	Biblioteka do renderowania filmów/obrazu ze wsparciem GPU
 Name:		libplacebo
-Version:	4.192.1
+Version:	5.264.1
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 #Source0Download: https://code.videolan.org/videolan/libplacebo/tags
 Source0:	https://code.videolan.org/videolan/libplacebo/-/archive/v%{version}/%{name}-v%{version}.tar.bz2
-# Source0-md5:	95b2918a7458c5a903625ed00f0be972
+# Source0-md5:	3ec983fe6d3167591bd9892602b146d0
 URL:		https://code.videolan.org/videolan/libplacebo
 BuildRequires:	gcc >= 5:3.2
 BuildRequires:	glslang-devel
-# >= 2763
-BuildRequires:	lcms2-devel >= 2.6
-BuildRequires:	libepoxy >= 1.4.0
+BuildRequires:	lcms2-devel >= 2.9
+%if %{with libdovi}
+BuildRequires:	libdovi-devel >= 1.6.7
+%endif
 BuildRequires:	libstdc++-devel >= 6:4.7
-BuildRequires:	meson >= 0.51
+BuildRequires:	meson >= 0.63
 BuildRequires:	ninja >= 1.5
+BuildRequires:	python3-glad2 >= 2.0.0
 BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	shaderc-devel >= 2021.0-2
-BuildRequires:	Vulkan-Loader-devel >= 1.0.42
-Requires:	libepoxy >= 1.4.0
+BuildRequires:	Vulkan-Loader-devel >= 1.2.0
+Requires:	lcms2 >= 2.9
+%if %{with libdovi}
+Requires:	libdovi >= 1.6.7
+%endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -38,7 +44,7 @@ Summary:	Header files for libplacebo library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libplacebo
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	lcms2-devel >= 2.6
+Requires:	lcms2-devel >= 2.9
 Requires:	shaderc-devel
 Requires:	Vulkan-Loader-devel
 
@@ -68,7 +74,8 @@ Statyczna biblioteka libplacebo.
 %build
 %meson build \
 	%{!?with_static_libs:--default-library=shared} \
-	-Ddemos=false
+	-Ddemos=false \
+	%{!?with_libdovi:-Dlibdovi=disabled}
 
 %ninja_build -C build
 
@@ -86,7 +93,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc COPYING README.md
-%attr(755,root,root) %{_libdir}/libplacebo.so.192
+%attr(755,root,root) %{_libdir}/libplacebo.so.264
 
 %files devel
 %defattr(644,root,root,755)
