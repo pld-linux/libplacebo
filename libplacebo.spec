@@ -22,6 +22,7 @@ BuildRequires:	libdovi-devel >= 1.6.7
 BuildRequires:	libstdc++-devel >= 6:4.7
 BuildRequires:	meson >= 0.63
 BuildRequires:	ninja >= 1.5
+BuildRequires:	pkgconfig
 BuildRequires:	python3-glad2 >= 2.0.0
 BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	shaderc-devel >= 2021.0-2
