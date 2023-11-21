@@ -6,27 +6,28 @@
 Summary:	Reusable library for GPU-accelerated video/image rendering
 Summary(pl.UTF-8):	Biblioteka do renderowania filmów/obrazu ze wsparciem GPU
 Name:		libplacebo
-Version:	5.264.1
+Version:	6.338.1
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 #Source0Download: https://code.videolan.org/videolan/libplacebo/tags
 Source0:	https://code.videolan.org/videolan/libplacebo/-/archive/v%{version}/%{name}-v%{version}.tar.bz2
-# Source0-md5:	3ec983fe6d3167591bd9892602b146d0
+# Source0-md5:	3c66b72bcbee0004d2663b7f4deca9c7
 URL:		https://code.videolan.org/videolan/libplacebo
+BuildRequires:	Vulkan-Loader-devel >= 1.3.0
 BuildRequires:	gcc >= 5:3.2
 BuildRequires:	lcms2-devel >= 2.9
 %if %{with libdovi}
 BuildRequires:	libdovi-devel >= 1.6.7
 %endif
-BuildRequires:	libstdc++-devel >= 6:4.7
+BuildRequires:	libstdc++-devel >= 6:8
 BuildRequires:	meson >= 0.63
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	python3-glad2 >= 2.0.0
 BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	shaderc-devel >= 2021.0-2
-BuildRequires:	Vulkan-Loader-devel >= 1.2.0
+BuildRequires:	xxHash-devel
 Requires:	lcms2 >= 2.9
 %if %{with libdovi}
 Requires:	libdovi >= 1.6.7
@@ -44,9 +45,9 @@ Summary:	Header files for libplacebo library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libplacebo
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	Vulkan-Loader-devel
 Requires:	lcms2-devel >= 2.9
 Requires:	shaderc-devel
-Requires:	Vulkan-Loader-devel
 
 %description devel
 Header files for libplacebo library.
@@ -93,7 +94,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc COPYING README.md
-%attr(755,root,root) %{_libdir}/libplacebo.so.264
+%attr(755,root,root) %{_libdir}/libplacebo.so.338
 
 %files devel
 %defattr(644,root,root,755)
