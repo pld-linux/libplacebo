@@ -15,7 +15,6 @@ Source0:	https://code.videolan.org/videolan/libplacebo/-/archive/v%{version}/%{n
 # Source0-md5:	3ec983fe6d3167591bd9892602b146d0
 URL:		https://code.videolan.org/videolan/libplacebo
 BuildRequires:	gcc >= 5:3.2
-BuildRequires:	glslang-devel
 BuildRequires:	lcms2-devel >= 2.9
 %if %{with libdovi}
 BuildRequires:	libdovi-devel >= 1.6.7
