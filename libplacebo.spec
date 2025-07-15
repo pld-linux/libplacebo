@@ -74,17 +74,17 @@ Statyczna biblioteka libplacebo.
 %{__sed} -ne '1,/^-----/ p' LICENSE > COPYING
 
 %build
-%meson build \
+%meson \
 	%{!?with_static_libs:--default-library=shared} \
 	-Ddemos=false \
 	%{!?with_libdovi:-Dlibdovi=disabled}
 
-%ninja_build -C build
+%meson_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%ninja_install -C build
+%meson_install
 
 %clean
 rm -rf $RPM_BUILD_ROOT
